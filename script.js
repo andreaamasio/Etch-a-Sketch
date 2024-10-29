@@ -12,16 +12,17 @@ function createDiv(size){
 }
 function askSize(){
     let size=parseInt(prompt("How many squares do you want for side?"))
-    let gridElementSize=gridElements[0].offsetWidth
+    // below remove 2 because of margin 1px for side of the width
+    let gridElementSize=gridElements[0].offsetWidth-2
     gridElements.forEach(element => {
         container.removeChild(element)
     });    
     console.log(gridElementSize)
     console.log(`size:${size}`)
     let containerSize=(size+1)*gridElementSize
-    console.log(`container size:${containerSize}`)
-    // container.setAttribute("style",`width:${containerSize}`)
-    container.width=String(containerSize) 
+    
+    container.setAttribute("style",`width:${containerSize}px`)
+    // container.width=String(containerSize) 
     createDiv(size)
 }
 createDiv(256)
