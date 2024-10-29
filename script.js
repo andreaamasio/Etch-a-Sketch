@@ -37,12 +37,30 @@ function createNewGrid(size){
      
     createDiv(size)
 }
-createDiv(256)
+
+createDiv(16)
+
 
 const gridElements=document.querySelectorAll(".gridElement")
 
 const btnPrompt=document.querySelector("#btnPrompt")
 
 btnPrompt.addEventListener("click",askSize)
+let opacity = 0
+function changeBgColor(){
+    let red=String(getColor())
+    let green=String(getColor())
+    let blue=String(getColor())    
+    this.setAttribute("style",`background-color:rgb(${red},${green},${blue}); opacity:${opacity}`)
+    opacity+=0.1
+}
+function getColor(){
+    let randomNum=parseInt(Math.random()*257)
+    return randomNum
+}
+
+gridElements.forEach(element => {
+    element.addEventListener("mouseover",changeBgColor)
+});
 
 
