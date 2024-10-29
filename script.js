@@ -10,19 +10,31 @@ function createDiv(size){
         container.appendChild(newDiv)
     }
 }
+function checkPrompt(size){
+    if (isNaN(size)||size>100){
+        size=parseInt(prompt("Please enter numbers only and lower than 100. How many squares do you want for side?"))
+        checkPrompt(size)
+    } else {
+        return createNewGrid(size)
+    }
+    
+}
 function askSize(){
-    let size=parseInt(prompt("How many squares do you want for side?"))
+    let size=parseInt(prompt("How many squares do you want for side? (maximum is 100)"))    
+    checkPrompt(size)
+}
+function createNewGrid(size){   
     // below remove 2 because of margin 1px for side of the width
     let gridElementSize=gridElements[0].offsetWidth-2
     gridElements.forEach(element => {
         container.removeChild(element)
     });    
-    console.log(gridElementSize)
-    console.log(`size:${size}`)
+    
+    
     let containerSize=(size+1)*gridElementSize
     
     container.setAttribute("style",`width:${containerSize}px`)
-    // container.width=String(containerSize) 
+     
     createDiv(size)
 }
 createDiv(256)
